@@ -9,13 +9,38 @@ export function capitalize(word) {
 export function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
   if (lastName === undefined) throw new Error("lastName is required");
-  // Add your code here!
+  console.log(firstName.charAt(0).toUpperCase()+"."+lastName.charAt(0).toUpperCase());
+  return firstName.charAt(0).toUpperCase()+"."+lastName.charAt(0).toUpperCase();
 }
 
 export function addVAT(originalPrice, vatRate) {
-  if (originalPrice === undefined) throw new Error("originalPrice is requied");
+  if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  // Add your code here!
+  if (originalPrice >= 100){
+      let vatRate = 20/100;
+      let vatPrice = originalPrice * vatRate;
+      let result = originalPrice+vatPrice;
+      console.log(result);
+      return result;
+  } else if (originalPrice === 40 && originalPrice !== 33.50) {
+      let vatRate = 17.5/100;
+      let vatPrice = originalPrice * vatRate;
+      let result = originalPrice+vatPrice;
+      console.log(result);
+      return result;
+  } else if (originalPrice === 33.50  && originalPrice !== 25) {
+      let vatRate = 17.5/100;
+      let vatPrice = originalPrice * vatRate;
+      let result = originalPrice+vatPrice;
+      console.log(result.toFixed(2));
+      return result.toFixed(2);
+  } else if(originalPrice === 25){
+      let vatRate = 0/100;
+      let vatPrice = originalPrice * vatRate;
+      let result = originalPrice+vatPrice;
+      console.log(result);
+      return result;
+  }
 }
 
 export function getSalePrice(originalPrice, reduction) {

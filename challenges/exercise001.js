@@ -93,15 +93,40 @@ export function reverseAllWords(words) {
 
 export function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+    let counter = 0;
+    for(let i = 0; i < users.length; i++){
+      if(users[i].type === 'Linux') counter++;
+    }
+    console.log(counter);
+    return counter;
 }
 
 export function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+  let total = 0;
+  for(let i = 0; i < scores.length; i++){
+    total += scores[i];
+  }
+  let avg = total / scores.length;
+  console.log(Number(avg.toFixed(2)));
+  return Number(avg.toFixed(2));
+
 }
 
 export function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  // Add your code here!
+  for (let i = 0; i <= n; i++) {
+    if(i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuzz");
+      return "fizzbuzz";
+    } else if(i % 5 === 0) {
+      console.log("buzz");
+      return "buzz";
+    } else if (i % 3 === 0) {
+      console.log("fizz");
+      return "fizz";
+    } else {
+      console.log(i);
+    }
+  }
 }

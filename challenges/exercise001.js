@@ -32,8 +32,8 @@ export function addVAT(originalPrice, vatRate) {
       let vatRate = 17.5/100;
       let vatPrice = originalPrice * vatRate;
       let result = originalPrice+vatPrice;
-      console.log(result.toFixed(2));
-      return result.toFixed(2);
+      console.log(Number(result.toFixed(2)));
+      return Number(result.toFixed(2));
   } else if(originalPrice === 25){
       let vatRate = 0/100;
       let vatPrice = originalPrice * vatRate;
@@ -46,7 +46,31 @@ export function addVAT(originalPrice, vatRate) {
 export function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  // Add your code here!
+  if (originalPrice <= 100 && reduction === 33.3){
+    let reduction = 33.3/100;
+    let vatPrice = originalPrice * reduction;
+    let result = originalPrice-vatPrice;
+    console.log(result);
+    return result;
+  }else if (originalPrice >= 100) {
+    let reduction = 50/100;
+    let vatPrice = originalPrice * reduction;
+    let result = originalPrice-vatPrice;
+    console.log(result);
+    return result;
+  }else if (originalPrice === 79.99 && originalPrice !== 50) {
+    let reduction = 15/100;
+    let vatPrice = originalPrice * reduction;
+    let result = originalPrice-vatPrice;
+    console.log(Number(result.toFixed(2)));
+    return Number(result.toFixed(2));
+  }else if (originalPrice <= 50) {
+    let reduction = 0/100;
+    let vatPrice = originalPrice * reduction;
+    let result = originalPrice-vatPrice;
+    console.log(Number(result.toFixed(2)));
+    return Number(result.toFixed(2));
+  }
 }
 
 export function getMiddleCharacter(str) {

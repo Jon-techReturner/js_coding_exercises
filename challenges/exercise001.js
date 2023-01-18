@@ -115,18 +115,12 @@ export function getMeanScore(scores) {
 
 export function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  for (let i = 0; i <= n; i++) {
-    if(i % 3 === 0 && i % 5 === 0) {
-      console.log("fizzbuzz");
-      return "fizzbuzz";
-    } else if(i % 5 === 0) {
-      console.log("buzz");
-      return "buzz";
-    } else if (i % 3 === 0) {
-      console.log("fizz");
-      return "fizz";
-    } else {
-      console.log(i);
-    }
-  }
+   //Filter out the numbers indivisible by either 3 and 5
+    if (!(n % 3 === 0) && !(n % 5 === 0)) return n;
+    //Filter out numbers divisible by 3 and 5
+    else if ((n % 3 === 0) && (n % 5 === 0)) return "fizzbuzz";
+    //Filter out numbers divisible by 3
+    else if (n % 3 === 0) return "fizz";
+    //Filter out numbers divisible by 5
+    else if (n % 5 === 0) return "buzz";
 }

@@ -1,16 +1,17 @@
 export function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
-  // Your code here!
+  return nums.map(sqt => sqt ** 2);
 }
 
 export function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Your code here!
+  return words.map((word, index) => index == 0 ? word: word[0].toUpperCase() + word.slice(1)).join(''); 
 }
 
 export function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your code here!
+   let resultArr = people.map(subj => subj.subjects.length);
+   return resultArr.reduce((a,b) => a+b, 0);
 }
 
 export function checkIngredients(menu, ingredient) {

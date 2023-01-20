@@ -14,24 +14,21 @@ export function generateInitials(firstName, lastName) {
 export function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (vatRate === undefined) throw new Error("vatRate is required");
+  const vatRatePrice = vatRate/100;
   if (originalPrice >= 100){
-      let vatRate = 20/100;
-      let vatPrice = originalPrice * vatRate;
+      let vatPrice = originalPrice * vatRatePrice;
       let result = originalPrice+vatPrice;
       return result;
   } else if (originalPrice === 40 && originalPrice !== 33.50) {
-      let vatRate = 17.5/100;
-      let vatPrice = originalPrice * vatRate;
+      let vatPrice = originalPrice * vatRatePrice;
       let result = originalPrice+vatPrice;
       return result;
   } else if (originalPrice === 33.50  && originalPrice !== 25) {
-      let vatRate = 17.5/100;
-      let vatPrice = originalPrice * vatRate;
+      let vatPrice = originalPrice * vatRatePrice;
       let result = originalPrice+vatPrice;
       return Number(result.toFixed(2));
   } else if(originalPrice === 25){
-      let vatRate = 0/100;
-      let vatPrice = originalPrice * vatRate;
+      let vatPrice = originalPrice * vatRatePrice;
       let result = originalPrice+vatPrice;
       return result;
   }
@@ -40,24 +37,21 @@ export function addVAT(originalPrice, vatRate) {
 export function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
+  const reductionPrice = reduction/100;
   if (originalPrice <= 100 && reduction === 33.3){
-    let reduction = 33.3/100;
-    let vatPrice = originalPrice * reduction;
+    let vatPrice = originalPrice * reductionPrice;
     let result = originalPrice-vatPrice;
     return result;
   }else if (originalPrice >= 100) {
-    let reduction = 50/100;
-    let vatPrice = originalPrice * reduction;
+    let vatPrice = originalPrice * reductionPrice;
     let result = originalPrice-vatPrice;
     return result;
   }else if (originalPrice === 79.99 && originalPrice !== 50) {
-    let reduction = 15/100;
-    let vatPrice = originalPrice * reduction;
+    let vatPrice = originalPrice * reductionPrice;
     let result = originalPrice-vatPrice;
     return Number(result.toFixed(2));
   }else if (originalPrice <= 50) {
-    let reduction = 0/100;
-    let vatPrice = originalPrice * reduction;
+    let vatPrice = originalPrice * reductionPrice;
     let result = originalPrice-vatPrice;
     return Number(result.toFixed(2));
   }
@@ -80,11 +74,8 @@ export function reverseAllWords(words) {
 
 export function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-    let counter = 0;
-    for(let i = 0; i < users.length; i++){
-      if(users[i].type === 'Linux') counter++;
-    }
-    return counter;
+    const result = users.filter(user => user.type === 'Linux').length;
+    return result;
 }
 
 export function getMeanScore(scores) {

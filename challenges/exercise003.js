@@ -17,11 +17,15 @@ export function getTotalSubjects(people) {
 export function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // Your code here!
+   const result = menu.map(mainMenu => mainMenu.ingredients.includes(ingredient));
+   return result.reduce((a) => a);
 }
 
 export function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  // Your code here!
+  const result = arr1.filter(arr => arr2.includes(arr));
+  const uniqueSet = new Set(result);
+  const removedDuplicateNum = [...uniqueSet];
+  return removedDuplicateNum.sort();
 }

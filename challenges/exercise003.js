@@ -19,6 +19,7 @@ export function checkIngredients(menu, ingredient) {
   if (!ingredient) throw new Error("ingredient is required");
    const result = menu.map(mainMenu => mainMenu.ingredients.includes(ingredient));
    return result.reduce((a) => a);
+ 
 }
 
 export function duplicateNumbers(arr1, arr2) {

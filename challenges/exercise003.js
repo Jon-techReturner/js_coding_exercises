@@ -17,8 +17,10 @@ export function getTotalSubjects(people) {
 export function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-   const result = menu.map(mainMenu => mainMenu.ingredients.includes(ingredient));
-   return result.reduce((a) => a);
+    const result = menu.find(obj => {
+      return (obj.ingredients.includes(ingredient));
+    });
+    return typeof result === "undefined" ? false : true;
  
 }
 

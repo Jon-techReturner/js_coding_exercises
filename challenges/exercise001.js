@@ -14,47 +14,17 @@ export function generateInitials(firstName, lastName) {
 export function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  const vatRatePrice = vatRate/100;
-  if (originalPrice >= 100){
-      let vatPrice = originalPrice * vatRatePrice;
-      let result = originalPrice+vatPrice;
-      return result;
-  } else if (originalPrice === 40 && originalPrice !== 33.50) {
-      let vatPrice = originalPrice * vatRatePrice;
-      let result = originalPrice+vatPrice;
-      return result;
-  } else if (originalPrice === 33.50  && originalPrice !== 25) {
-      let vatPrice = originalPrice * vatRatePrice;
-      let result = originalPrice+vatPrice;
-      return Number(result.toFixed(2));
-  } else if(originalPrice === 25){
-      let vatPrice = originalPrice * vatRatePrice;
-      let result = originalPrice+vatPrice;
-      return result;
-  }
+  const result = originalPrice+(originalPrice*(vatRate/100));
+  const rounded = Math.round(result*100)/100;
+  return rounded;
 }
 
 export function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  const reductionPrice = reduction/100;
-  if (originalPrice <= 100 && reduction === 33.3){
-    let vatPrice = originalPrice * reductionPrice;
-    let result = originalPrice-vatPrice;
-    return result;
-  }else if (originalPrice >= 100) {
-    let vatPrice = originalPrice * reductionPrice;
-    let result = originalPrice-vatPrice;
-    return result;
-  }else if (originalPrice === 79.99 && originalPrice !== 50) {
-    let vatPrice = originalPrice * reductionPrice;
-    let result = originalPrice-vatPrice;
-    return Number(result.toFixed(2));
-  }else if (originalPrice <= 50) {
-    let vatPrice = originalPrice * reductionPrice;
-    let result = originalPrice-vatPrice;
-    return Number(result.toFixed(2));
-  }
+  const result = originalPrice - (originalPrice * (reduction/100));
+  const rounded = Math.round(result*100)/100;
+  return rounded;
 }
 
 export function getMiddleCharacter(str) {
@@ -74,29 +44,33 @@ export function reverseAllWords(words) {
 
 export function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-    const result = users.filter(user => user.type === 'Linux').length;
-    return result;
+    return users.filter(user => user.type === 'Linux').length;
 }
 
 export function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  let total = 0;
-    for(let i = 0; i < scores.length; i++){
-      total += scores[i];
-    }
-  let avg = total / scores.length;
+  let sum = 0;
+  for (let e of scores) {sum += e;}
+  let avg = sum/scores.length;
   return Number(avg.toFixed(2));
 
 }
 
 export function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-   //numbers indivisible by either 3 and 5
+  //  //numbers indivisible by either 3 and 5
+  //   if (!(n % 3 === 0) && !(n % 5 === 0)) return n;
+  //   //numbers divisible by 3 and 5
+  //   else if ((n % 3 === 0) && (n % 5 === 0)) return "fizzbuzz";
+  //   //numbers divisible by 3
+  //   else if (n % 3 === 0) return "fizz";
+  //   //numbers divisible by 5
+  //   else if (n % 5 === 0) return "buzz";
+  let result = "";
+    if(n % 3 === 0)
+        result += "fizz"
+    if(n % 5 === 0)
+        result += "buzz"
     if (!(n % 3 === 0) && !(n % 5 === 0)) return n;
-    //numbers divisible by 3 and 5
-    else if ((n % 3 === 0) && (n % 5 === 0)) return "fizzbuzz";
-    //numbers divisible by 3
-    else if (n % 3 === 0) return "fizz";
-    //numbers divisible by 5
-    else if (n % 5 === 0) return "buzz";
+    return result;
 }

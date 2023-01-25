@@ -20,7 +20,7 @@ export function checkIngredients(menu, ingredient) {
     const result = menu.find(obj => {
       return (obj.ingredients.includes(ingredient));
     });
-    return typeof result === "undefined" ? false : true;
+    return result !== undefined;
  
 }
 

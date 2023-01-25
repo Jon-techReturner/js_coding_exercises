@@ -6,6 +6,8 @@
  */
 export const sumMultiples = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
+  const result = arr.reduce((a,b) => b % 3 === 0 || b % 5 === 0 ? a+b: a, 0)
+  return result;
 };
 
 /**
@@ -15,6 +17,7 @@ export const sumMultiples = (arr) => {
  */
 export const isValidDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
+  
 };
 
 /**

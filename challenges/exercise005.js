@@ -1,19 +1,15 @@
 export const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  return nums[(nums.indexOf(n) + 1)] || null;
+  return nums.indexOf(n) !== -1 && nums.indexOf(n) !== nums.length -1 ? nums[(nums.indexOf(n) + 1)] : null;
 };
 
 export const count1sand0s = (str) => {
   if (str === undefined) throw new Error("str is required");
-  const freq = {};
+  const freq = {1:0, 0:0};
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
-    if(freq[char] === undefined){
-      freq[char] = 1;
-    }else{
-      freq[char] += 1;
-    }
+    freq[char] += 1;
   }
   return freq;
   
@@ -48,7 +44,7 @@ export const arrShift = (arr) => {
 export const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-    if( JSON.stringify(haystack).indexOf(searchTerm) > -1 ) {
+    if( JSON.stringify(haystack).toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ) {
       return true;
   }else{
     return false;
@@ -57,7 +53,7 @@ export const findNeedle = (haystack, searchTerm) => {
 
 export const getWordFrequencies = (str) => {
   if (str === undefined) throw new Error("str is required");
-   const splitRemoved = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+   const splitRemoved = str.replace(/[.,\/#!$%\^&\*;:{}=\-_?`~()]/g, "")
    .replace(/\s{2,}/g, " ");
    const  split = splitRemoved.split(" ");
    const wordLower = String.prototype.toLowerCase.apply(split).split(",");
@@ -69,7 +65,5 @@ export const getWordFrequencies = (str) => {
         obj[wordLower[i]]++;
       }
     }
-    
-    console.log(obj);
     return obj;
 };

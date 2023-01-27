@@ -19,10 +19,14 @@ export const isValidDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
   let dna = str.split("");
   const valid = ['A','T','G','C'];
+  let isValid = true;
   for(let i = 0; i < dna.length; i++){
     const validDna = (validDna) => validDna === dna[i];
-    return valid.some(validDna);
+    isValid = valid.some(validDna);
+    if(!isValid)
+    return false;
   }
+  return true;
 };
 
 /**
@@ -32,15 +36,17 @@ export const isValidDNA = (str) => {
  */
 export const getComplementaryDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
-  let dna = str.split("");
-  let arr = [];
-  const dnaPairs = { A: 'AT', T: 'TA', G: 'GC', C: 'CG' }
-    for (let i = 0; i < dna.length; i++) {
-     if (dnaPairs[str[i].toUpperCase()]) {
-        arr.push(dnaPairs[str[i].toUpperCase()]);
-      }
-    }
-  return arr;
+  let strUp = str.toUpperCase();
+  let sequence = {
+    "A": "T",
+    "T": "A",
+    "G": "C",
+    "C": "G"
+  };
+  return strUp.replace(/A|T|G|C/g, function(matched){
+    return sequence[matched];
+  });
+  
 };
 
 /**

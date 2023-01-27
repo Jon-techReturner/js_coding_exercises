@@ -22,7 +22,8 @@ import {
   describe("isValidDNA", () => {
     test("return true/false depending on whether it is a valid DNA string", () => {
       expect(isValidDNA("CTAG")).toBe(true);
-      expect(isValidDNA("BTAG")).toBe(false);
+      expect(isValidDNA("TBAG")).toBe(false);
+      expect(isValidDNA("TTCGACCAAAACTGCTG")).toBe(true);
       expect(isValidDNA("A")).toBe(true);
     });
   
@@ -30,11 +31,10 @@ import {
 
   describe("getComplementaryDNA", () => {
     test("return a string of the complementary base pairs. In DNA, T always pairs with A, and C always pairs with G", () => {
-      expect(getComplementaryDNA("TCGATTCG")).toBe([
-        'TA', 'CG', 'GC',
-        'AT', 'TA', 'TA',
-        'CG', 'GC'
-      ]);
+      expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+      expect(getComplementaryDNA("AAGCTGGTTTTGACGAC")).toBe("TTCGACCAAAACTGCTG");
+      expect(getComplementaryDNA("GGAACCGTACCTTAAGGAACT")).toBe("CCTTGGCATGGAATTCCTTGA");
+      expect(getComplementaryDNA("agcaagagca")).toBe("TCGTTCTCGT");
     });
   
   });

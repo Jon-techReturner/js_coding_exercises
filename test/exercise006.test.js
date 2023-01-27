@@ -20,10 +20,68 @@ import {
   });
 
   describe("isValidDNA", () => {
-    test("return the sum of any numbers which are a multiple of 3 or 5", () => {
-      const dna = ["G", "C", "T", "A"];
-      expect(isValidDNA(dna, "CTAG")).toBe(true);
-      expect(isValidDNA(dna, "BTAG")).toBe(false);
+    test("return true/false depending on whether it is a valid DNA string", () => {
+      expect(isValidDNA("CTAG")).toBe(true);
+      expect(isValidDNA("BTAG")).toBe(false);
+      expect(isValidDNA("A")).toBe(true);
+    });
+  
+  });
+
+  describe("getComplementaryDNA", () => {
+    test("return a string of the complementary base pairs. In DNA, T always pairs with A, and C always pairs with G", () => {
+      expect(getComplementaryDNA("TCGATTCG")).toBe([
+        'TA', 'CG', 'GC',
+        'AT', 'TA', 'TA',
+        'CG', 'GC'
+      ]);
+    });
+  
+  });
+
+  describe("isItPrime", () => {
+    test("return true/false depending on whether it is a prime number or not", () => {
+      expect(isItPrime(1)).toBe(false);
+      expect(isItPrime(2)).toBe(true);
+      expect(isItPrime(7)).toBe(true);
+    });
+  
+  });
+  describe("createMatrix", () => {
+    test("should receive a number and return an array of n arrays, each filled with n items.", () => {
+      expect(createMatrix("foo", 3)).toBe(
+        [ 'foo', 'foo', 'foo'],
+        [ 'foo', 'foo', 'foo'],
+        [ 'foo', 'foo', 'foo']
+      );
+      expect(createMatrix("buzz", 6)).toBe(
+        [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
+        [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
+        [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
+        [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
+        [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
+        [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ]
+      );
+    });
+  
+  });
+  describe("areWeCovered", () => {
+    test("return true/false depending on whether there are enough staff scheduled for the given day. 3 staffs required per day", () => {
+      const staff = [
+        { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+        { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+        { name: "Joe", rota: ["Monday", "Wednesday", "Friday"] },
+        { name: "John", rota: ["Tuesday", "Thursday", "Friday", "Sunday"] },
+        { name: "Terence", rota: ["Monday", "Wednesday", "Saturday", "Sunday"] },
+        
+      ];
+      expect(areWeCovered(staff, "Monday")).toBe(true);
+      expect(areWeCovered(staff, "Tuesday")).toBe(true);
+      expect(areWeCovered(staff, "Wednesday")).toBe(true);
+      expect(areWeCovered(staff, "Thursday")).toBe(false);
+      expect(areWeCovered(staff, "Friday")).toBe(true);
+      expect(areWeCovered(staff, "Saturday")).toBe(false);
+      expect(areWeCovered(staff, "Sunday")).toBe(true);
     });
   
   });

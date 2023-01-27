@@ -56,8 +56,17 @@ export const getComplementaryDNA = (str) => {
  */
 export const isItPrime = (n) => {
   if (n === undefined) throw new Error("n is required");
-  return Array.from({ length: n }, (i, index) => index + 1).filter(
-    (item, i) => (n % item) === 0).length === 2;
+  if (n === 1) {
+    return false;
+  } else if (n > 1) {
+    for (let i = 2; i < n; i++) {
+      if (n % i == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
 };
 
 /**
@@ -74,9 +83,14 @@ export const isItPrime = (n) => {
 export const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
-  const fill2 = Array(n).fill(fill);
-  console.log(Array(n).fill(fill2));
-  return Array(n).fill(fill2);
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    let arr = [];
+    arr.length = n;
+    
+    result.push(arr.fill(fill, 0,n))
+  }
+  return result;
 
 };
 

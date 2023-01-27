@@ -4,7 +4,7 @@
  */
 export const sumDigits = (n) => {
   if (n === undefined) throw new Error("n is required");
-  return n.toString().split('').map(Number).reduce(function (a, b) { return a + b; }, 0)
+  return n.toString().split('').reduce(function (a, b) { return a + Number(b); }, 0);
 };
 
 /**
@@ -15,18 +15,15 @@ export const sumDigits = (n) => {
  * @param {Number} end
  * @param {Number} step
  */
-export const createRange = (start, end, step) => {
+export const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  // if (step === undefined);
-  //   console.log(
-  //     "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-  //   );
-    // let step = 1;
-    const len = Math.floor((end - start) / step == 1) + 1;
+  if (step === undefined);
+    console.log(
+      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
+    );
+    const len = Math.floor((end - start) / step) + 1;
     return Array(len).fill().map((_, idx) => start + (idx * step));
-  
-
 
 };
 
@@ -62,6 +59,10 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  return users.filter(user => 
+    Object.values(user.screenTime.find(st => st.date === date)?.usage || {})
+    .reduce((a,b) => a+b, 0) >= 100
+    ).map(user => user.username);
 };
 
 /**
@@ -90,4 +91,28 @@ export const hexToRGB = (hexStr) => {
  */
 export const findWinner = (board) => {
   if (board === undefined) throw new Error("board is required");
+  const winningCombinations = [
+    [0,1,2],
+    [0,3,6],
+    [0,4,8],
+    [1,4,7],
+    [2,5,8],
+    [2,4,6],
+    [3,4,5],
+    [6,7,8]
+  ];
+  
+  const arr = board.flatMap(row => row);
+  let winner = null;
+  
+  // use find so we can break loop once we find a winning combination
+  winningCombinations.find(comb => {
+    if(arr[comb[0]] && arr[comb[0]] === arr[comb[1]] && arr[comb[1]] === arr[comb[2]]) {
+      winner = arr[comb[0]];
+      // breaks the loop
+      return true;
+    }
+  });
+  
+  return winner;
 };

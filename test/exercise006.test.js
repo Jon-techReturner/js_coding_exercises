@@ -49,19 +49,20 @@ import {
   });
   describe("createMatrix", () => {
     test("should receive a number and return an array of n arrays, each filled with n items.", () => {
-      expect(createMatrix("foo", 3)).toBe(
+     
+      expect(JSON.stringify(createMatrix(3,"foo"))).toBe(JSON.stringify([
         [ 'foo', 'foo', 'foo'],
         [ 'foo', 'foo', 'foo'],
         [ 'foo', 'foo', 'foo']
-      );
-      expect(createMatrix("buzz", 6)).toBe(
+      ]));
+      expect(JSON.stringify(createMatrix(6,"buzz"))).toBe(JSON.stringify([
         [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
         [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
         [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
         [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
         [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ],
         [ 'buzz', 'buzz', 'buzz', 'buzz', 'buzz', 'buzz' ]
-      );
+      ]));
     });
   
   });

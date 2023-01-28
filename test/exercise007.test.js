@@ -46,33 +46,50 @@ import {
             name: "Sam Jones",
             screenTime: [
                          { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
-                         { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
+                         { date: "2019-06-13", usage: { mapMyRun: 45, whatsApp: 0, facebook: 50, safari: 16} },
                          { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
                         ]
            },
          ];
-      expect(getScreentimeAlertList(users, "2019-05-04" )).toBe(["beth_1234"]);
+      expect(JSON.stringify(getScreentimeAlertList(users, "2019-05-04" ))).toBe(JSON.stringify(["beth_1234"]));
+      expect(JSON.stringify(getScreentimeAlertList(users, "2019-06-13" ))).toBe(JSON.stringify(["sam_j_1989"]));
     });
   
   });
 
   describe("hexToRGB", () => {
-    test("convert the colours.", () => {
-      // expect(hexToRGB(123)).toBe(6);
-      // expect(hexToRGB(6810)).toBe(15);
-      // expect(hexToRGB(55285)).toBe(25);
+    test("This function should transform the hex code into an RGB code.", () => {
+      expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+      expect(hexToRGB("#ffffcc")).toBe("rgb(255,255,204)");
+      expect(hexToRGB("#3333ff")).toBe("rgb(51,51,255)");
     });
   
   });
 
   describe("findWinner", () => {
-    test("find the winner.", () => {
-      const firstTest = [
+    test("return 'X' if player X has won.", () => {
+      const test1 = [
       ["X", "0", null],
       ["X", null, "0"],
       ["X", null, "0"]
       ];
-      expect(findWinner(firstTest)).toBe("X");
+      expect(findWinner(test1)).toBe("X");
+    });
+    test("return 'null' if there is currently no winner.", () => {
+      const test2 = [
+      ["X", "0", null],
+      ["X", null, "0"],
+      [null, null, "0"]
+      ];
+      expect(findWinner(test2)).toBe(null);
+    });
+    test("return '0' if the player 0 has won", () => {
+      const test3 = [
+      ["0", "0", null],
+      ["X", "0", "0"],
+      ["X", null, "0"]
+      ];
+      expect(findWinner(test3)).toBe("0");
     });
   
   });

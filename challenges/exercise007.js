@@ -19,9 +19,9 @@ export const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
   if (step === undefined);
-    console.log(
-      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-    );
+    // console.log(
+    //   "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
+    // );
     const len = Math.floor((end - start) / step) + 1;
     return Array(len).fill().map((_, idx) => start + (idx * step));
 
@@ -77,6 +77,10 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  let result = [];
+  result = ['0x' + hexStr[1] + hexStr[2] | 0, '0x' + hexStr[3] + hexStr[4] | 0, '0x' + hexStr[5] + hexStr[6] | 0];
+  console.log( 'rgb(' + result + ')');
+  return 'rgb(' + result + ')';
 };
 
 /**
